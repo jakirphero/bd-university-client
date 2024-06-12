@@ -13,6 +13,9 @@ import History from "../pages/Dashboard/BilHistory/History";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import ErrorPage from "../component/Error/ErrorPage";
 import AdminHome from "../pages/Dashboard/DashHome/AdminHome";
+import AdminRoute from "./AdminRoute";
+import AllNews from "../pages/Dashboard/AllNews/AllNews";
+import AddNews from "../pages/Dashboard/AddNews/AddNews";
 
 const router = createBrowserRouter([
     {
@@ -58,8 +61,16 @@ const router = createBrowserRouter([
             //admin route
             {
                 path: "allUsers",
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
+            {
+                path: "addNews",
+                element: <AdminRoute><AddNews></AddNews></AdminRoute>
+            },
+            {
+                path: "allNews",
+                element: <AdminRoute><AllNews></AllNews></AdminRoute>
+            }
 
         ]
     }

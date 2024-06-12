@@ -4,11 +4,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import SectionTitle from "../../../component/SectionTitle/SectionTitle";
 import useAxious from "../../../hooks/useAxious";
 
-
 const News = () => {
     const [news, setNews] = useState([]);
     const axiosSecure = useAxious();
     const [loading, setLoading] = useState(true);
+    const [expandedNewsId, setExpandedNewsId] = useState(null);
 
     useEffect(() => {
         axiosSecure('/news')
@@ -18,12 +18,12 @@ const News = () => {
             })
             .catch(error => {
                 console.log(error);
-                setLoading(false)
+                setLoading(false);
             })
-    }, [axiosSecure])
+    }, [axiosSecure]);
 
     if (loading) {
-        <span className="loading loading-ring loading-xs"></span>
+        return <span className="loading loading-ring loading-xs"></span>;
     }
 
     const chunkArray = (array, size) => {
@@ -36,6 +36,10 @@ const News = () => {
 
     const newsChunks = chunkArray(news, 3);
 
+    const toggleExpand = (newsId) => {
+        setExpandedNewsId(expandedNewsId === newsId ? null : newsId);
+    };
+
     return (
         <div className="container mx-auto font-bold text-gray-800">
             <SectionTitle heading={'latest news'}></SectionTitle>
@@ -46,24 +50,27 @@ const News = () => {
                 autoPlay={true}
                 interval={5000}
             >
-                {newsChunks.map((chunk) => (
-                    <div key={newsChunks._id} className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {
-                            chunk.map((newsItem) => (
-                                <div key={newsItem._id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                                    <img src={newsItem.imgSrc} alt={newsItem.title} className="w-full h-48 object-cover" />
-                                    <div className="p-4">
-                                        <h2 className="text-xl font-bold mb-2">{newsItem.title}</h2>
-                                        <p className="text-gray-700">{newsItem.description}</p>
-                                    </div>
+                {newsChunks.map((chunk, index) => (
+                    <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {chunk.map((newsItem) => (
+                            <div key={newsItem._id} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                                <img src={newsItem.imgSrc} alt={newsItem.title} className="w-full h-48 object-cover" />
+                                <div className="p-4">
+                                    <h2 className="text-xl font-bold mb-2">{newsItem.title}</h2>
+                                    <p className="text-gray-700">
+                                        {expandedNewsId === newsItem._id ? newsItem.description : 
+                                            newsItem.description.length > 100 ? newsItem.description.substring(0, 100) + '...' : newsItem.description}
+                                    </p>
+                                    <button onClick={() => toggleExpand(newsItem._id)} className="btn btn-outline">
+                                        {expandedNewsId === newsItem._id ? 'Show less' : 'Read more'}
+                                    </button>
                                 </div>
-                            ))
-                        }
+                            </div>
+                        ))}
                     </div>
                 ))}
-
-            </Carousel >
-        </div >
+            </Carousel>
+        </div>
     );
 };
 

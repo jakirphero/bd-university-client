@@ -1,6 +1,7 @@
 import { FaAd, FaAmazonPay, FaBookmark, FaForumbee, FaHome, FaPaypal, FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
+import { FaBook } from "react-icons/fa6";
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
@@ -14,7 +15,7 @@ const Dashboard = () => {
                                 <li><NavLink to={'/dashboard/adminHome'}><FaHome></FaHome>Admin Home</NavLink></li>
                                 <li><NavLink to={'/dashboard/allUsers'}><FaUsers></FaUsers>All Users</NavLink></li>
                                 <li><NavLink to={'/dashboard/Dealing'}><FaPaypal></FaPaypal>university Dealings</NavLink></li>
-                                <li><NavLink to={'/dashboard/addNews'}><FaAd></FaAd>Add News</NavLink></li>
+                                <li><NavLink to={'/dashboard/allNews'}><FaBook></FaBook>All News</NavLink></li>
                                 <li><NavLink to={'/dashboard/addNotices'}><FaBookmark></FaBookmark>Add Notices</NavLink></li>
                             </>
                             :
