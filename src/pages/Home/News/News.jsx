@@ -56,8 +56,8 @@ const News = () => {
                             <div key={newsItem._id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                                 <img src={newsItem.imgSrc} alt={newsItem.title} className="w-full h-48 object-cover" />
                                 <div className="p-4">
-                                    <h2 className="text-xl font-bold mb-2">{newsItem.title}</h2>
-                                    <p className="text-gray-700">
+                                    <h2 className="text-2xl font-bold mb-2">{newsItem.title}</h2>
+                                    <p>
                                         {expandedNewsId === newsItem._id ? newsItem.description : 
                                             newsItem.description.length > 100 ? newsItem.description.substring(0, 100) + '...' : newsItem.description}
                                     </p>
