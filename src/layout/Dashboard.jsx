@@ -7,7 +7,7 @@ const Dashboard = () => {
     const [isAdmin] = useAdmin();
     return (
         <div className="flex">
-            <div className="w-64 min-h-screen bg-orange-300  pt-4">
+            <div className="w-64 min-h-screen bg-orange-300  pt-4 ">
                 <ul className="menu p-4">
                     {
                         isAdmin ?
@@ -16,7 +16,7 @@ const Dashboard = () => {
                                 <li><NavLink to={'/dashboard/allUsers'}><FaUsers></FaUsers>All Users</NavLink></li>
                                 <li><NavLink to={'/dashboard/Dealing'}><FaPaypal></FaPaypal>university Dealings</NavLink></li>
                                 <li><NavLink to={'/dashboard/allNews'}><FaBook></FaBook>All News</NavLink></li>
-                                <li><NavLink to={'/dashboard/addNotices'}><FaBookmark></FaBookmark>Add Notices</NavLink></li>
+                                <li><NavLink to={'/dashboard/allNotice'}><FaBookmark></FaBookmark>All Notice</NavLink></li>
                             </>
                             :
                             <>

@@ -51,19 +51,21 @@ const News = () => {
                 interval={5000}
             >
                 {newsChunks.map((chunk, index) => (
-                    <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center">
                         {chunk.map((newsItem) => (
-                            <div key={newsItem._id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                                <img src={newsItem.imgSrc} alt={newsItem.title} className="w-full h-48 object-cover" />
-                                <div className="p-4">
-                                    <h2 className="text-2xl font-bold mb-2">{newsItem.title}</h2>
+                            <div key={newsItem._id} className="card w-80 md:w-96 bg-base-100 shadow-xl">
+                                <figure><img src={newsItem.imgSrc} alt={newsItem.title} /></figure>
+                                <div className="p-4 card-body">
+                                    <h2 className="card-title mb-2">{newsItem.title}</h2>
                                     <p>
-                                        {expandedNewsId === newsItem._id ? newsItem.description : 
+                                        {expandedNewsId === newsItem._id ? newsItem.description :
                                             newsItem.description.length > 100 ? newsItem.description.substring(0, 100) + '...' : newsItem.description}
                                     </p>
-                                    <button onClick={() => toggleExpand(newsItem._id)} className="btn btn-outline">
-                                        {expandedNewsId === newsItem._id ? 'Show less' : 'Read more'}
-                                    </button>
+                                    <div className="card-actions justify-end">
+                                        <button onClick={() => toggleExpand(newsItem._id)} className="btn btn-outline">
+                                            {expandedNewsId === newsItem._id ? 'Show less' : 'Read more'}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         ))}

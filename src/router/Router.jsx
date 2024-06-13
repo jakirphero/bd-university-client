@@ -16,6 +16,8 @@ import AdminHome from "../pages/Dashboard/DashHome/AdminHome";
 import AdminRoute from "./AdminRoute";
 import AllNews from "../pages/Dashboard/AllNews/AllNews";
 import AddNews from "../pages/Dashboard/AddNews/AddNews";
+import AllNotices from "../pages/Dashboard/AllNotices/AllNotices";
+import AddNotices from "../pages/Dashboard/AddNotices/AddNotices";
 
 const router = createBrowserRouter([
     {
@@ -66,6 +68,14 @@ const router = createBrowserRouter([
             {
                 path: "addNews",
                 element: <AdminRoute><AddNews></AddNews></AdminRoute>
+            },
+            {
+                path: "allNotice",
+                element: <AdminRoute><AllNotices></AllNotices></AdminRoute>
+            },
+            {
+                path: "addNotice",
+                element: <AdminRoute><AddNotices></AddNotices></AdminRoute>
             },
             {
                 path: "allNews",
